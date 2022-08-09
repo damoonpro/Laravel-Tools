@@ -1,6 +1,6 @@
 {
-    "name": "damoon/tools",
-    "description": "This is usual tools that in damoon project will used",
+    "name": "damoonpro/tools",
+    "description": "This is usual tools that in damoonpro project will used",
     "autoload": {
         "psr-4": {
             "Damoon\\Tools\\": "/src"
