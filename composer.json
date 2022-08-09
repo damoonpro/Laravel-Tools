@@ -1,0 +1,16 @@
+{
+    "name": "damoon/tools",
+    "description": "This is usual tools that in damoon project will used",
+    "autoload": {
+        "psr-4": {
+            "Damoon\\Tools\\": "/src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohammad Mahdi Noorani",
+            "email": "matio.nora2000@gmail.com"
+        }
+    ],
+    "require": {}
+}
