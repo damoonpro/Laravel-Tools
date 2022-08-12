@@ -1,6 +1,8 @@
 {
     "name": "damoonpro/laravel-tools",
     "description": "This is usual tools that in damoonpro project will used",
+    "keywords": ["laravel", "tools", "stripTags", "persian to english", "response", "upload file", "file info"],
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Damoon\\Tools\\": "/src"
