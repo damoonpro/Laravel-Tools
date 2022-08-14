@@ -1,6 +1,6 @@
 <?php
 
-namespace Damoon\Custom\Route;
+namespace Damoon\Tools\Custom\Route;
 
 use Illuminate\Support\Str;
 
