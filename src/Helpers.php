@@ -47,7 +47,7 @@ class Helpers
         );
     }
 
-    public static function responseWithError(string $message, int $response_code , array $errors = []){
+    public static function responseWithError(string $message, int $response_code , array $errors = []) {
         return response()->json(self::arrayPure([
             'message' => $message,
             'errors' => $errors,
@@ -62,16 +62,12 @@ class Helpers
      * @param bool $sensitive
      * @return mixed return array or collection
      */
-    public static function arrayPure(array $array, bool $toCollection = false, bool $sensitive = false){
+    public static function arrayPure(array $array, bool $toCollection = false, bool $sensitive = false) {
         $array = collect($array)->map(function ($item){
             if(empty($item))
                 return null;
             return $item;
-        })->filter(function($item) use($sensitive) {
-            if(is_int($item) and $item == 0)
-                return 'false';
-            if($sensitive and is_bool($item) and ! $item)
-                return 'false';
+        })->filter(function($item) {
             return $item;
         });
 
