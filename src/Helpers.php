@@ -18,20 +18,22 @@ class Helpers
 
     public static function toEnglish($string)
     {
-        $newNumbers = range(0, 9);
+        if (is_string($string) || is_array($string)) {
+            $newNumbers = range(0, 9);
 
-        $persianDecimal = ['&#1776;', '&#1777;', '&#1778;', '&#1779;', '&#1780;', '&#1781;', '&#1782;', '&#1783;', '&#1784;', '&#1785;'];
-        $arabicDecimal = ['&#1632;', '&#1633;', '&#1634;', '&#1635;', '&#1636;', '&#1637;', '&#1638;', '&#1639;', '&#1640;', '&#1641;'];
-        $arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-        $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            $persianDecimal = ['&#1776;', '&#1777;', '&#1778;', '&#1779;', '&#1780;', '&#1781;', '&#1782;', '&#1783;', '&#1784;', '&#1785;'];
+            $arabicDecimal = ['&#1632;', '&#1633;', '&#1634;', '&#1635;', '&#1636;', '&#1637;', '&#1638;', '&#1639;', '&#1640;', '&#1641;'];
+            $arabic = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
-        $string = str_replace($persianDecimal, $newNumbers, $string);
-        $string = str_replace($arabicDecimal, $newNumbers, $string);
-        $string = str_replace($arabic, $newNumbers, $string);
-        $string = str_replace($persian, $newNumbers, $string);
+            $string = str_replace($persianDecimal, $newNumbers, $string);
+            $string = str_replace($arabicDecimal, $newNumbers, $string);
+            $string = str_replace($arabic, $newNumbers, $string);
+            $string = str_replace($persian, $newNumbers, $string);
 
-        $string = trim($string);
-        $string = str_replace(array('ي', 'ك', 'ة'), array('ی', 'ک', 'ه'), $string);
+            $string = trim($string);
+            $string = str_replace(array('ي', 'ك', 'ة'), array('ی', 'ک', 'ه'), $string);
+        }
 
         return $string;
     }
@@ -47,7 +49,7 @@ class Helpers
         );
     }
 
-    public static function responseWithError(string $message, int $response_code , array $errors = []){
+    public static function responseWithError(string $message, int $response_code , array $errors = []) {
         return response()->json(self::arrayPure([
             'message' => $message,
             'errors' => $errors,
@@ -62,16 +64,12 @@ class Helpers
      * @param bool $sensitive
      * @return mixed return array or collection
      */
-    public static function arrayPure(array $array, bool $toCollection = false, bool $sensitive = false){
+    public static function arrayPure(array $array, bool $toCollection = false, bool $sensitive = false) {
         $array = collect($array)->map(function ($item){
             if(empty($item))
                 return null;
             return $item;
-        })->filter(function($item) use($sensitive) {
-            if(is_int($item) and $item == 0)
-                return 'false';
-            if($sensitive and is_bool($item) and ! $item)
-                return 'false';
+        })->filter(function($item) {
             return $item;
         });
 
